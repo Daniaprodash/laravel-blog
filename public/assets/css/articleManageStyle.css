@@ -1,0 +1,325 @@
+body {
+    background: linear-gradient(135deg, #12372A 0%, #12372A 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    direction: rtl;
+}
+
+/* حاوية إدارة المقالات */
+.admin-articles-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    min-height: 100vh;
+}
+
+/* رأس الصفحة */
+.admin-header {
+    background: #fbfada;
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(18, 55, 42, 0.15);
+    border: 2px solid rgba(18, 55, 42, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #12372a;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.admin-title i {
+    font-size: 32px;
+    color: #436851;
+}
+
+.admin-stats {
+    display: flex;
+    gap: 20px;
+}
+
+.stat-item {
+    text-align: center;
+    background: rgba(173, 188, 159, 0.3);
+    padding: 15px 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(67, 104, 81, 0.2);
+}
+
+.stat-number {
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    color: #12372a;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #436851;
+    font-weight: 500;
+}
+
+/* شبكة المقالات */
+.articles-grid {
+    display:list-item;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 25px;
+    align-items: start;
+}
+
+/* كرت المقال للادمن */
+.admin-article-card {
+    background: #fbfada;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(18, 55, 42, 0.12);
+    border: 2px solid rgba(18, 55, 42, 0.15);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-left: auto; /* يدفع الكرت إلى اليمين */
+}
+
+
+
+.admin-article-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(18, 55, 42, 0.2);
+    border-color: rgba(67, 104, 81, 0.3);
+}
+
+
+/* قسم المحتوى */
+.article-content-section {
+    padding: 25px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;       /* توسيط أفقي للعناصر داخل القسم */
+    justify-content: center;   /* توسيط عمودي للعناصر داخل القسم */
+    background-color: #fbfada;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;        /* توسيط النصوص داخل القسم */
+}
+
+
+
+
+.article-admin-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #12372A;
+    margin: 0 0 10px 0;
+    line-height: 1.3;
+}
+
+
+/* أزرار الإجراءات */
+.article-actions {
+    display: inline-flex;
+    gap: 4px; /* تقليل المسافة بين الأزرار */
+    margin-top: auto;
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px; /* تقليل الحشو لتقليل حجم الزر */
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: unset; /* إزالة التمدد التلقائي */
+    justify-content: center;
+}
+
+.view-btn {
+    
+    color: #12372A;
+}
+
+.view-btn:hover {
+    transform: translateY(-2px);
+}
+
+.edit-btn {
+    
+    color: #12372a;
+}
+
+.edit-btn:hover {
+   
+    transform: translateY(-2px);
+    
+}
+
+.delete-btn {
+    background: rgba(239, 68, 68, 0.8);
+    color: #fff;
+}
+
+.delete-btn:hover {
+    background: #ef4444;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.delete-form {
+    flex: 1;
+    margin: 0;
+}
+
+.action-btn i {
+    font-size: 14px;
+}
+
+/* حالة عدم وجود مقالات */
+.no-articles {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+.no-articles-content {
+    text-align: center;
+    background: #fbfada;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(18, 55, 42, 0.15);
+    border: 2px solid rgba(18, 55, 42, 0.1);
+}
+
+.no-articles-content i {
+    font-size: 64px;
+    color: #adbc9f;
+    margin-bottom: 20px;
+}
+
+.no-articles-content h3 {
+    font-size: 24px;
+    color: #12372a;
+    margin: 0 0 10px 0;
+}
+
+.no-articles-content p {
+    font-size: 16px;
+    color: #436851;
+    margin: 0 0 25px 0;
+}
+
+.create-article-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #12372a, #436851);
+    color: #fbfada;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    
+    box-shadow: 0 4px 12px rgba(18, 55, 42, 0.3);
+}
+
+.create-article-btn:hover {
+    background: linear-gradient(135deg, #436851, #adbc9f);
+    color: #12372a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(18, 55, 42, 0.4);
+}
+
+/* تصميم متجاوب */
+@media (max-width: 768px) {
+    .admin-articles-container {
+        padding: 20px 15px;
+    }
+
+    .admin-header {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+        padding: 25px;
+    }
+
+    .admin-title {
+        font-size: 24px;
+    }
+
+    .articles-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .article-content-section {
+        padding: 20px;
+    }
+
+    .article-admin-title {
+        font-size: 18px;
+    }
+
+    
+
+    .article-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .action-btn {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-articles-container {
+        padding: 15px 10px;
+    }
+
+    .admin-header {
+        padding: 20px;
+    }
+
+    .admin-title {
+        font-size: 20px;
+    }
+
+    .article-content-section {
+        padding: 15px;
+    }
+
+    .article-admin-title {
+        font-size: 16px;
+    }
+
+
+    .no-articles-content i {
+        font-size: 48px;
+    }
+
+    .no-articles-content h3 {
+        font-size: 20px;
+    }
+}

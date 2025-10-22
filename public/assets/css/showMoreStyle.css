@@ -1,0 +1,356 @@
+body {
+    background: linear-gradient(135deg, #12372A 0%, #12372A 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+ /* تصميم صفحة المقالة الكاملة */
+ .article-detail-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.article-detail-card {
+    background: #fbfada;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(18, 55, 42, 0.15);
+    border: 2px solid rgba(18, 55, 42, 0.2);
+    transition: all 0.4s ease;
+}
+
+.article-detail-card:hover {
+    box-shadow: 0 25px 60px rgba(18, 55, 42, 0.25);
+}
+
+.article-detail-image {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+}
+
+.detail-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.article-detail-card:hover .detail-img {
+    transform: scale(1.02);
+}
+
+.article-detail-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: linear-gradient(135deg, rgba(18, 55, 42, 0.9), rgba(67, 104, 81, 0.8));
+    padding: 16px 20px;
+    border-radius: 0 0 0 24px;
+}
+
+.article-detail-date {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.article-detail-content {
+    padding: 40px;
+}
+
+.article-detail-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.article-detail-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #12372a;
+    margin: 0 0 20px 0;
+    line-height: 1.3;
+    text-align: center;
+}
+
+.article-detail-meta {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.article-detail-info {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background: rgba(173, 188, 159, 0.3);
+    padding: 12px 20px;
+    border-radius: 25px;
+    border: 1px solid rgba(67, 104, 81, 0.2);
+}
+
+.publish-detail-date,
+.article-detail-author {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #436851;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.article-detail-body {
+    margin-bottom: 40px;
+}
+
+.article-detail-text {
+    font-size: 18px;
+    color: #12372a;
+    line-height: 1.8;
+    text-align: justify;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid rgba(18, 55, 42, 0.1);
+}
+
+.article-detail-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 2px solid rgba(18, 55, 42, 0.1);
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #12372a, #436851);
+    color: #fbfada;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(18, 55, 42, 0.3);
+}
+
+.back-btn:hover {
+    background: linear-gradient(135deg, #436851, #adbc9f);
+    color: #12372a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(18, 55, 42, 0.4);
+}
+
+.back-icon {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.back-btn:hover .back-icon {
+    transform: translateX(-3px);
+}
+
+.article-detail-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: rgba(173, 188, 159, 0.8);
+    color: #12372a;
+    border: 1px solid rgba(67, 104, 81, 0.3);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.share-btn:hover {
+    background: rgba(67, 104, 81, 0.8);
+    color: #fbfada;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(18, 55, 42, 0.3);
+}
+
+.share-icon {
+    font-size: 16px;
+}
+
+/* تصميم متجاوب لصفحة المقالة */
+@media (max-width: 768px) {
+    .article-detail-container {
+        padding: 15px;
+    }
+
+    .article-detail-image {
+        height: 250px;
+    }
+
+    .article-detail-content {
+        padding: 25px;
+    }
+
+    .article-detail-title {
+        font-size: 24px;
+    }
+
+    .article-detail-text {
+        font-size: 16px;
+        padding: 20px;
+    }
+
+    .article-detail-info {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 15px;
+    }
+
+    .article-detail-footer {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+
+    .back-btn,
+    .share-btn {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .article-detail-container {
+        padding: 10px;
+    }
+
+    .article-detail-content {
+        padding: 20px;
+    }
+
+    .article-detail-title {
+        font-size: 20px;
+    }
+
+    .article-detail-text {
+        font-size: 15px;
+        padding: 15px;
+    }
+
+    .article-detail-info {
+        padding: 8px 12px;
+    }
+
+    .publish-detail-date,
+    .article-detail-author {
+        font-size: 13px;
+    }
+}
+/* تصميم حقل اضافة التعليق */
+.comment-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+  .comment-input {
+    width: 100%;
+    padding: 10px 40px 10px 10px; /* مساحة للأيقونة من اليمين */
+    border: 1px solid #ccc;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(18, 55, 42, 0.3);
+  }
+  /* تصميم زر ارسال النعليق */
+  .comment-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #12372a, #436851);
+    border-radius: 12px;
+    color: #fbfada;
+  }
+  .comment-btn:hover {
+    background: linear-gradient(135deg, #436851, #adbc9f);
+    color: #12372a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(18, 55, 42, 0.3);
+  }
+
+  
+ 
+  /* تصميم تعليقات المقال */
+  .article-detail-comments {
+    margin-top: 40px;
+  }
+
+  .article-detail-comments h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #12372a;
+  }
+
+  .article-detail-comments-list {
+    margin-top: 20px;
+  }
+
+  .article-detail-comment {
+    margin-bottom: 20px;
+  }
+
+  /* comment item   */
+  .comment-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(173, 188, 159, 0.3);
+    padding: 12px 20px;
+    border-radius: 25px;
+    border: 1px solid rgba(67, 104, 81, 0.2);
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .comment-content {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .comment-author {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .comment-date {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .delete-comment-btn{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    cursor: pointer;
+    color: #ef4444;
+    transition: all 0.3s ease;
+    padding: 5px;
+    float: left;
+  }
+
+  .no-comments {
+    font-size: 16px;
+    font-weight: 600;
+  }

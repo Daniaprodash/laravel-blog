@@ -1,0 +1,55 @@
+ 
+ /* العنوان */
+.tit h2 {
+    color: #12372A;
+    font-weight: bold;
+    margin-bottom: 24px;
+  }
+  
+/* تسميات الحقول */
+.form-label {
+    font-weight: 600;
+    color: #436851;
+    margin-bottom: 8px;
+}
+  
+  /* الحقول */
+.form-control,
+.form-select {
+    border: 3px solid #12372A;
+    border-radius: 20px;
+    padding: 12px 16px;
+    font-size: 1rem;
+    color: #333;
+    transition: border-color 0.3s ease;
+  }
+  
+.form-control:focus,
+.form-select:focus {
+    border-color: #436851;
+    box-shadow: 0 0 0 3px rgba(67, 104, 81, 0.2);
+}
+  
+/* زر النشر */
+.btn-success {
+    background-color: #436851;
+    border: none;
+    padding: 12px 24px;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: #12372A;
+    color: #fff;
+}
+  
+/* رسائل التنبيه */
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 16px;
+}

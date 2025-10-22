@@ -1,0 +1,89 @@
+.body{
+    background: linear-gradient(135deg, #12372A 0%, #12372A 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* حاوية النموذج */
+.update_form {
+    max-width: 700px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    background-color:#436851;
+}
+
+/* عنوان النموذج */
+.update_form h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #12372A;
+}
+
+/* تنسيق الحقول */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.update_form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.update_form input[type="text"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #fdfdfd;
+    transition: border-color 0.3s ease;
+}
+
+.update_form input:focus,textarea:focus
+{
+    border-color: #12372A;
+    outline: none;
+}
+
+/* أزرار التعديل والإلغاء */
+.update-article-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #12372A;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #195c3a;
+}
+
+.btn-secondary {
+    background-color: #ccc;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background-color: #b3b3b3;
+}
+
