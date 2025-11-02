@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('action'); // create, update, delete, etc.
+            $table->string('target_type'); // Article, Comment, etc.
+            $table->unsignedBigInteger('target_id'); // ID of the affected item
+            $table->text('description')->nullable(); // optional message        
             $table->timestamps();
         });
     }

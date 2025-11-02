@@ -70,11 +70,23 @@
                 </div>
             </div>
             <div class="col-md-6 mb-3">
-                <div class="welcome-card">
-                    <h5><i class="fas fa-tasks me-2"></i>آخر النشاطات</h5>
-                    <p class="text-muted">لا توجد نشاطات حديثة</p>
-                </div>
-            </div>
+    <div class="welcome-card">
+        <h5><i class="fas fa-tasks me-2"></i>آخر النشاطات</h5>
+
+        @forelse($activities as $activity)
+            <p>
+                <i class="fas fa-history me-1 text-primary"></i>
+                {{ $activity->description }}
+                <br>
+                <small class="text-muted">{{ $activity->user->name }}</small>
+                <small class="text-muted">{{ $activity->created_at->diffForHumans() }}</small>
+                
+            </p>
+        @empty
+            <p class="text-muted">لا توجد نشاطات حديثة</p>
+        @endforelse
+    </div>
+</div>
         </div>
     </div>
  </div>

@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Events\ArticleCreated;
+use App\Events\ArticleDeleted;
+use App\Models\Activity;
 
 class AuthController extends Controller
 {
@@ -136,7 +139,8 @@ class AuthController extends Controller
         $count_users=User::get()->count();
         $count=Article::get()->count();
         $article_user=Article::get()->where('user_id', Auth::id())->count();
-        return view('AdminDashboard' ,compact('count','count_users','article_user'));
+        $activities = Activity::with('user')->orderBy('created_at', 'desc')->get();
+        return view('AdminDashboard' ,compact('count','count_users','article_user','activities'));
     }
 
     //عرض صفحة ادارة مقالة
@@ -214,6 +218,7 @@ class AuthController extends Controller
             return redirect()->back()->withErrors(['msg' => 'المقالة غير موجودة']);
         }
         $article->delete();
+        event(new ArticleDeleted($article));
         $user=Auth::user();
         if($user->role==='admin'){
         return redirect()->route('auth.article')->with('success', 'تم حذف المقالة بنجاح');
@@ -245,6 +250,7 @@ class AuthController extends Controller
         $article->image =  $imageName;  // حفظ المسار في قاعدة البيانات
      }
         $article->save();
+        event(new ArticleCreated($article));
         return redirect()->back()->with('success', 'تمت إضافة المقال بنجاح!');
     }
 
