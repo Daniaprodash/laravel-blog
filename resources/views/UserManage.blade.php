@@ -2,6 +2,12 @@
 @section('title', 'UserManage')
 <link rel="stylesheet" href="{{asset('assets/css/userManageStyle.css')}}">
 @section('content')
+@if(session('success'))
+    <div class="alert alert-success" style="margin-bottom: 1rem; padding: 10px; background-color: #d4edda; color: #155724; border-radius: 5px;">
+       {{ session('success') }}
+    </div>
+@endif
+
 <div class="admin-users-container">
     <div class="admin-header">
         <h1 class="admin-title">
@@ -16,61 +22,133 @@
         </div>
     </div>
 
-    <div class="users-grid">
-        @forelse ($user as $user)
-        <div class="admin-user-card">
-            <div class="user-content-section">
-                <div class="user-header">
-                    <h3 class="user-admin-title">{{$user->name}}</h3>
-                   
-                </div>
+    <div class="users-table-wrapper">
+        <div class="table-responsive">
+            <table class="users-table">
+                <thead>
+                    <tr>
+                        <th class="col-id">#</th>
+                        <th class="col-name">الاسم</th>
+                        <th class="col-email">البريد الإلكتروني</th>
+                        <th class="col-role">الصلاحية</th>
+                        <th class="col-articles">عدد المقالات</th>
+                        <th class="col-date">تاريخ التسجيل</th>
+                        <th class="col-actions">الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($user as $index => $singleUser)
+                    <tr class="user-row">
+                        <td class="col-id">
+                            <div class="user-id">{{ $index + 1 }}</div>
+                        </td>
+                        <td class="col-name">
+                            <div class="user-name-cell">
+                                <div class="user-avatar">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <div class="user-name-info">
+                                    <span class="user-name">{{ $singleUser->name }}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-email">
+                            <span class="user-email">
+                                <i class="fas fa-envelope"></i>
+                                {{ $singleUser->email }}
+                            </span>
+                        </td>
+                        <td class="col-role">
+                            @if($singleUser->role === 'admin')
+                                <span class="badge badge-admin">
+                                    <i class="fas fa-crown"></i>
+                                    مدير
+                                </span>
+                            @else
+                                <span class="badge badge-user">
+                                    <i class="fas fa-user"></i>
+                                    مستخدم
+                                </span>
+                            @endif
+                        </td>
+                        <td class="col-articles">
+                            <span class="articles-count">
+                                <i class="fas fa-newspaper"></i>
+                                {{ $singleUser->articles_count }}
+                            </span>
+                        </td>
+                        <td class="col-date">
+                            <span class="user-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    {{ $singleUser->created_at}}
+                            </span>
+                        </td>
+                        <td class="col-actions">
+                            <div class="action-buttons">
+                                @if($singleUser->role !== 'admin')
+                                <form action="{{ route('auth.star', $singleUser->id) }}" method="POST" class="inline-form">
+                                    @csrf
+                                    <button type="submit" class="action-btn promote-btn" title="ترقية إلى مدير">
+                                        <i class="fas fa-star"></i>
+                                    </button>
+                                </form>
+                                @endif
 
-                <div class="user-excerpt">
-                    {{$user->email}}
-                </div>
-
-                <div class="user-actions">
-                    <a href="#" class="action-btn edit-btn">
-                        <i class="fas fa-edit"></i>
-                        <span>تعديل</span>
-                    </a>
-
-                    <form action="{{route('auth.star', $user->id)}}" method="POST">
-                        @csrf
-                        <button type="submit" class="action-btn edit-btn">
-                        <i class="fas fa-star"></i>
-                        <span>ترقية</span>
-                      </a>
-                    </form>
-                   
-
-                    <form action="{{route('auth.userDelete', $user->id)}}" method="POST" class="delete-form"
-                          onsubmit="return confirm('هل أنت متأكد من حذف هذا المستخدم');">
-                        @csrf
-                        
-                        <button type="submit" class="action-btn delete-btn">
-                            <i class="fas fa-trash"></i>
-                            <span>حذف</span>
-                        </button>
-                    </form>
-                   
-                </div>
-            </div>
+                                @if($singleUser->id !== Auth::id())
+                                
+                                    <button type="submit" class="action-btn delete-btn" title="حذف المستخدم" onclick="openConfirmModal({{ $singleUser->id }})" data-toggle="modal" data-target="#confirmModal">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                               
+                                @else
+                                <span class="current-user-indicator" title="المستخدم الحالي">
+                                    <i class="fas fa-check-circle"></i>
+                                </span>
+                                @endif
+                            </div>
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="7" class="no-users-message">
+                            <div class="empty-state">
+                                <i class="fas fa-user-slash"></i>
+                                <h3>لا يوجد مستخدمين</h3>
+                                <p>لم يتم العثور على أي مستخدمين حتى الآن</p>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
-        @empty
-        <div class="no-articles">
-            <div class="no-users-content">
-                <i class="fas fa-newspaper"></i>
-                <h3>لا يوجد مستخدمين</h3>
-                <p>لا يوجد مستخدمين</p>
-                <a href="{{route('auth.showPostPage')}}" class="create-article-btn">
-                    <i class="fas fa-plus"></i>
-                    إضافة مستخدم للمدونة
-                </a>
-            </div>
-        </div>
-        @endforelse
     </div>
 </div>
 
+<div id="confirmModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:9999;">
+    <div style="background:white; padding:30px; border-radius:15px; text-align:center; min-width:350px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+        <i class="fas fa-exclamation-triangle" style="font-size:48px; color:#ef4444; margin-bottom:15px;"></i>
+        <p style="margin-bottom: 25px; font-size:16px; color:#333;">هل أنت متأكد من حذف هذا المستخدم؟ لا يمكن التراجع بعد الحذف.</p>
+        <form id="confirmDeleteForm" method="POST" style="display:inline-block;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" style="background:#ef4444; color:white; padding:10px 20px; border:none; border-radius:8px; cursor:pointer; font-size:14px; margin-left:10px;">نعم، حذف</button>
+            <button type="button" onclick="closeConfirmModal()" style="background:#6b7280; color:white; padding:10px 20px; border:none; border-radius:8px; cursor:pointer; font-size:14px;">إلغاء</button>
+        </form>
+    </div>
+</div>
+<script>
+    function openConfirmModal(userId) {
+        const form = document.getElementById('confirmDeleteForm');
+        form.action = `/userDelete/${userId}`; // أو استخدمي route إذا عندك JS routing
+        if(form) {
+            document.getElementById('confirmModal').style.display = 'flex';
+        }
+    }
+    function closeConfirmModal() {
+        if(document.getElementById('confirmModal')) {
+            document.getElementById('confirmModal').style.display = 'none';
+        }
+    }
+</script>
 @endsection

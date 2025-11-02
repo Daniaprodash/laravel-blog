@@ -142,7 +142,7 @@ class AuthController extends Controller
     //عرض صفحة ادارة مقالة
     public function showArticle()
     {
-        $article=Article::get();
+        $article = Article::with('user')->withCount('comments')->orderBy('created_at', 'desc')->get();
         return view('ArticleManage' , compact('article'));
     }
 
@@ -158,6 +158,13 @@ class AuthController extends Controller
     //تعديل مقالة
     public function updateArticle(Request $request, $id)
     {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'nullable|string',
+            'Categori' => 'required|string',
+            'images' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
         $article = Article::find($id);
     
         if (!$article) {
@@ -165,14 +172,25 @@ class AuthController extends Controller
         }
     
         $article->title = $request->input('title');
-        $article->content = $request->input('content'); 
-        $article->save();
-        $user=Auth::user();
-        if($user->role==='admin'){
-        return redirect()->route('auth.article')->with('success', 'تم تحديث المقالة بنجاح');
-        }else{
-            return redirect()->route('auth.userDashboard')->with('success', 'تم تحديث المقالة بنجاح');
+        $article->content = $request->input('content');
+        $article->Categori = $request->input('Categori');
+
+        // تحديث الصورة إذا تم رفع صورة جديدة
+        if ($request->hasFile('images')) {
+            // حذف الصورة القديمة إذا كانت موجودة
+            if ($article->image && file_exists(public_path('images/' . $article->image))) {
+                unlink(public_path('images/' . $article->image));
+            }
+            
+            $image = $request->file('images');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('images'), $imageName);
+            $article->image = $imageName;
         }
+
+        $article->save();
+    
+        return redirect()->route('auth.editArticle', $id)->with('success', 'تم تحديث المقالة بنجاح');
     }
 
     // عرض صفحة تعديل مقالة
@@ -198,9 +216,9 @@ class AuthController extends Controller
         $article->delete();
         $user=Auth::user();
         if($user->role==='admin'){
-        return redirect()->route('auth.article')->with('success', 'تم تحديث المقالة بنجاح');
+        return redirect()->route('auth.article')->with('success', 'تم حذف المقالة بنجاح');
         }else{
-            return redirect()->route('auth.userDashboard')->with('success', 'تم تحديث المقالة بنجاح');
+            return redirect()->route('auth.userDashboard')->with('success', 'تم حذف المقالة بنجاح');
         }
     }
 
@@ -240,15 +258,10 @@ class AuthController extends Controller
     // عرض صفحة ادارة المستخدمين
     public function showUser()
     {
-        $user=User::get();
+        $user = User::withCount('articles')->get();
         return view('UserManage' , compact('user'));
     }
 
-    // تعديل مستخدم
-    public function updateUSer($id)
-    {
-        // 
-    }
 
     // حذف مستخدم
     public function userDelete($id)
@@ -269,9 +282,9 @@ class AuthController extends Controller
         $targetUser->delete();
     
         if ($currentUser->role === 'admin') {
-            return redirect()->route('auth.dashboard')->with('success', 'تم حذف المستخدم بنجاح');
+            return redirect()->back()->with('success', 'تم حذف المستخدم بنجاح');
         } else {
-            return redirect()->route('auth.userDashboard')->with('success', 'تم حذف المستخدم بنجاح');
+            return redirect()->back()->with('success', 'تم حذف المستخدم بنجاح');
         }
     }
 
@@ -281,7 +294,7 @@ class AuthController extends Controller
         $user=User::find($id);
         $user->role = 'admin';
         $user->save();
-        return redirect()->route('auth.dashboard')->with('success', 'تمت الترقيه بنجاح');
+        return redirect()->back()->with('success', 'تمت الترقيه بنجاح');
     }
     
     // من نحن

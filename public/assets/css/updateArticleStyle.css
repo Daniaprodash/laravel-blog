@@ -1,89 +1,308 @@
-.body{
+body {
     background: linear-gradient(135deg, #12372A 0%, #12372A 100%);
     min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-/* حاوية النموذج */
-.update_form {
-    max-width: 700px;
-    margin: 50px auto;
-    background-color: #ffffff;
+
+.update-article-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* Alert Message */
+.alert {
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-success i {
+    font-size: 18px;
+}
+
+/* Form Wrapper */
+.update-form-wrapper {
+    background: #fbfada;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(18, 55, 42, 0.15);
+    border: 2px solid rgba(18, 55, 42, 0.1);
+}
+
+/* Form Header */
+.form-header {
+    background: linear-gradient(135deg, #436851 0%, #12372a 100%);
     padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    background-color:#436851;
-}
-
-/* عنوان النموذج */
-.update_form h1 {
+    color: white;
     text-align: center;
-    margin-bottom: 30px;
-    color: #12372A;
 }
 
-/* تنسيق الحقول */
-.form-group {
-    margin-bottom: 20px;
+.form-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
 }
 
-.update_form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #333;
+.form-title i {
+    font-size: 32px;
 }
 
-.update_form input[type="text"],
-textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+.form-subtitle {
     font-size: 16px;
-    background-color: #fdfdfd;
-    transition: border-color 0.3s ease;
+    margin: 0;
+    opacity: 0.9;
 }
 
-.update_form input:focus,textarea:focus
-{
-    border-color: #12372A;
+/* Form */
+.update-form {
+    padding: 40px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #12372a;
+}
+
+.form-group label i {
+    font-size: 16px;
+    color: #436851;
+}
+
+.form-control,
+.form-select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid rgba(18, 55, 42, 0.2);
+    border-radius: 10px;
+    font-size: 15px;
+    background-color: white;
+    transition: all 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #436851;
     outline: none;
+    box-shadow: 0 0 0 3px rgba(67, 104, 81, 0.1);
 }
 
-/* أزرار التعديل والإلغاء */
-.update-article-footer {
+.form-control::placeholder {
+    color: #999;
+}
+
+.form-select {
+    cursor: pointer;
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 150px;
+}
+
+/* Image Upload */
+.image-upload-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.current-image {
+    position: relative;
+    display: inline-block;
+    max-width: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid rgba(18, 55, 42, 0.2);
+}
+
+.current-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.current-image-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(18, 55, 42, 0.8);
+    color: white;
+    padding: 5px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.file-input {
+    padding: 10px;
+}
+
+.file-hint {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #666;
+    font-size: 13px;
+    font-style: italic;
+}
+
+.file-hint i {
+    color: #436851;
+}
+
+/* Form Footer */
+.form-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 35px;
+    padding-top: 25px;
+    border-top: 2px solid rgba(18, 55, 42, 0.1);
 }
 
-.btn-primary,
-.btn-secondary {
-    padding: 10px 25px;
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.btn i {
+    font-size: 16px;
 }
 
 .btn-primary {
-    background-color: #12372A;
-    color: #fff;
+    background: linear-gradient(135deg, #12372a 0%, #436851 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(18, 55, 42, 0.3);
 }
 
 .btn-primary:hover {
-    background-color: #195c3a;
+    background: linear-gradient(135deg, #436851 0%, #12372a 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(18, 55, 42, 0.4);
 }
 
 .btn-secondary {
-    background-color: #ccc;
-    color: #333;
+    background: #6c757d;
+    color: white;
+    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
 }
 
 .btn-secondary:hover {
-    background-color: #b3b3b3;
+    background: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+    .update-article-container {
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    .form-header {
+        padding: 25px 20px;
+    }
+
+    .form-title {
+        font-size: 24px;
+    }
+
+    .form-title i {
+        font-size: 28px;
+    }
+
+    .form-subtitle {
+        font-size: 14px;
+    }
+
+    .update-form {
+        padding: 25px 20px;
+    }
+
+    .form-footer {
+        flex-direction: column-reverse;
+        gap: 15px;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .current-image {
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .update-article-container {
+        margin: 10px auto;
+        padding: 10px;
+    }
+
+    .form-header {
+        padding: 20px 15px;
+    }
+
+    .form-title {
+        font-size: 20px;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .update-form {
+        padding: 20px 15px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+    }
+
+    .form-control,
+    .form-select {
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}

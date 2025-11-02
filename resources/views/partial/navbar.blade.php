@@ -47,6 +47,14 @@
 <!-- زر القائمة -->
 <!-- script -->
 <script>
+  // دالة لتبديل القائمة المنسدلة
+  function toggleCategories(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const dropdown = event.currentTarget.parentElement;
+    dropdown.classList.toggle('active');
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     const toggleBtn = document.querySelector('.mobile-nav-toggle');
     const navMenu = document.querySelector('.nav-options');
@@ -63,6 +71,8 @@
         toggleBtn.classList.add('fa-bars');
       }
     });
+
+  
   });
 </script>
     

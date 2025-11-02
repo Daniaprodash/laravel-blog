@@ -3,6 +3,11 @@
 <link rel="stylesheet" href="{{ asset('assets/css/showMoreStyle.css') }}">
 @section('content')
 <div class="article-detail-container">
+                @if(session('success'))
+                    <div class="alert alert-success" style="margin-bottom: 1rem; padding: 10px; background-color: #d4edda; color: #155724; border-radius: 5px;">
+                       {{ session('success') }}
+                    </div>
+                @endif
     <div class="article-detail-card">
         <!-- صورة المقال -->
         <div class="article-detail-image">
@@ -127,6 +132,14 @@
     }
    }
  </script>
+
+<script>
+    setTimeout(() => {
+        const alert = document.querySelector('.alert');
+        if (alert) alert.style.display = 'none';
+    }, 3000);
+</script>
+
 @endsection
 
 

@@ -3,6 +3,11 @@
 <link rel="stylesheet" href="{{asset('assets/css/postArticleStyle.css')}}">
 @section('content')
 <div class="container mt-5">
+  @if(session('success'))
+                    <div class="alert alert-success" style="margin-bottom: 1rem; padding: 10px; background-color: #d4edda; color: #155724; border-radius: 5px;">
+                       {{ session('success') }}
+                    </div>
+                 @endif
   <h2 class="mb-4 fw-bold text-center tit">نشر مقالة جديدة</h2>
 
   <form action="{{route('auth.postArticle')}}" method="POST" enctype="multipart/form-data">
@@ -40,6 +45,8 @@
       <button type="submit" class="btn btn-success">نشر المقالة</button>
   </form>
 </div>
+
+<!-- محرر النصوص -->
 <script>
   ClassicEditor
     .create(document.querySelector('#content'), {

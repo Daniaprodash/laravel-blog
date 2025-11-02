@@ -15,8 +15,8 @@ Route::controller(AuthController::class)->name('auth.')->group(function(){
     Route::post('/register', 'register');
     Route::post('/logout', 'logout')->name('logout');
     Route::get('/showUser', 'showUser')->name('showUser');
-    Route::post('/userDelete/{id}','userDelete')->name('userDelete');
-    Route::post('/updateUSer/{id}','updateUSer')->name('updateUSer');
+    Route::delete('/userDelete/{id}','userDelete')->name('userDelete');
+    
     Route::get('/userDashboard', 'userDashboard')->name('userDashboard');
     Route::get('/article', 'showArticle')->name('article');
     Route::get('/welcome','welcome')->name('welcome');
@@ -32,7 +32,7 @@ Route::controller(AuthController::class)->name('auth.')->group(function(){
     Route::get('/showPostPage' , 'showPostPage')->name('showPostPage');
     Route::post('/postArticle' , 'postArticle')->name('postArticle');
     Route::get('/cancel' , 'cancel')->name('cancel');
-    Route::post('/deleteArticle/{id}' , 'deleteArticle')->name('deleteArticle');
+    Route::delete('/deleteArticle/{id}' , 'deleteArticle')->name('deleteArticle');
     Route::post('/star/{id}','star')->name('star');
     Route::post('/comments' , 'postComment')->name('postComment');
 });
