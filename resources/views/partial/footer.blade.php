@@ -31,12 +31,10 @@
                     <div class="col-lg-3 col-md-6 footer-links">
                         <h4>تصنيفات</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">مقالات برمجية</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">رياضه</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">طعام</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">مقالات حول الفن</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">مقالات دينية</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">مقالات تاريخية</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">مقالات تقنية</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">مقالات ثقافية</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">مقالات اجتماعية</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">مقالات رياضية</a></li>
                         </ul>
                     </div>
 

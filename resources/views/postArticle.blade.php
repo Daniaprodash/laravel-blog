@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', 'تعديل المقالة - DASHBlog')
+@section('title', 'نشر مقالة جديدة - DASHBlog')
 <link rel="stylesheet" href="{{asset('assets/css/postArticleStyle.css')}}">
 @section('content')
 <div class="container mt-5">

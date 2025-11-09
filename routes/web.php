@@ -16,7 +16,6 @@ Route::controller(AuthController::class)->name('auth.')->group(function(){
     Route::post('/logout', 'logout')->name('logout');
     Route::get('/showUser', 'showUser')->name('showUser');
     Route::delete('/userDelete/{id}','userDelete')->name('userDelete');
-    
     Route::get('/userDashboard', 'userDashboard')->name('userDashboard');
     Route::get('/article', 'showArticle')->name('article');
     Route::get('/welcome','welcome')->name('welcome');
