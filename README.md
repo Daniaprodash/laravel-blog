@@ -36,12 +36,12 @@
 - register.blade.php – صفحة إنشاء حساب
 
 #### 📂 partial/
-- master.blade.php – القالب الرئيسي الذي يحتوي على الهيكل العام
 - navbar.blade.php – شريط التنقل العلوي
 - footer.blade.php – تذييل الصفحة
 - scripts.blade.php – ملفات الجافاسكربت المشتركة
 
 #### 📄 صفحات المحتوى:
+- master.blade.php – القالب الرئيسي الذي يحتوي على الهيكل العام
 - index.blade.php – الصفحة الرئيسية لعرض المقالات
 - AdminDashboard.blade.php – لوحة تحكم المدير
 - userDashboard.blade.php – لوحة تحكم المستخدم
