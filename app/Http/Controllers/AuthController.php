@@ -139,7 +139,7 @@ class AuthController extends Controller
         $count_users=User::get()->count();
         $count=Article::get()->count();
         $article_user=Article::get()->where('user_id', Auth::id())->count();
-        $activities = Activity::with('user')->orderBy('created_at', 'desc')->get();
+        $activities = Activity::with('user')->orderBy('created_at', 'desc')->take(5)->get();
         return view('AdminDashboard' ,compact('count','count_users','article_user','activities'));
     }
 
