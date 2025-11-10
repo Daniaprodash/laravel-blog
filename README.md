@@ -33,12 +33,19 @@ Located in `resources/views/`, divided into main folders:
 - register.blade.php – Registration page  
 
 #### 📂 partial/
+<<<<<<< HEAD
+=======
+- master.blade.php – Main layout  
+>>>>>>> 483476ebb475ee098c110b4fd64f6509a21f56ab
 - navbar.blade.php – Top navigation bar  
 - footer.blade.php – Page footer  
 - scripts.blade.php – Shared JavaScript files  
 
 #### 📄 Content Pages:
+<<<<<<< HEAD
 - master.blade.php – Main layout  
+=======
+>>>>>>> 483476ebb475ee098c110b4fd64f6509a21f56ab
 - index.blade.php – Homepage for articles  
 - AdminDashboard.blade.php – Admin dashboard  
 - userDashboard.blade.php – User dashboard  
