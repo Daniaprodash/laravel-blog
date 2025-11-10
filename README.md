@@ -236,7 +236,3 @@ If you face any issues during development or usage, try the following steps:
    ```
 
 > Always review error messages in the browser or terminal for detailed insights.
-
----
-
-إذا حابة أضيف هذا النص داخل ملف README جاهز أو أساعدك بتنسيقه أكثر، أنا جاهز!
