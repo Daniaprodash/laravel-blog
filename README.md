@@ -1,6 +1,5 @@
 # 📝 Blog Project  
 An electronic blog built with Laravel that allows article and user management, with user-friendly interfaces for the frontend team.
-
 ## 🧭 Overview
 
 A fully integrated blog developed using Laravel and MySQL database, aiming to provide a smooth experience for both users and administrators.  
