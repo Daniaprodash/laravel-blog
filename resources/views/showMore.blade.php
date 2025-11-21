@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', 'مقال - DASHBlog')
+@section('title', __('messages.article_page_title'))
 <link rel="stylesheet" href="{{ asset('assets/css/showMoreStyle.css') }}">
 @section('content')
 <div class="article-detail-container">
@@ -11,7 +11,7 @@
     <div class="article-detail-card">
         <!-- صورة المقال -->
         <div class="article-detail-image">
-            <img src="{{asset('images/' . $article->image)}}" alt="صورة المقال" class="detail-img">
+            <img src="{{asset('images/' . $article->image)}}" alt="{{ __('messages.article_image_alt') }}" class="detail-img">
             <div class="article-detail-overlay">
                 <div class="article-detail-date">
                 <i class="fas fa-calendar"></i>
@@ -25,7 +25,7 @@
 
             <!-- عنوان المقال -->
             <div class="article-detail-header">
-                <h1 class="article-detail-title">{{ $article->title ?? 'عنوان المقال' }}</h1>
+                <h1 class="article-detail-title">{{ $article->title ?? __('messages.article_title_default') }}</h1>
                 <div class="article-detail-meta">
                     <div class="article-detail-info">
                         <span class="publish-detail-date">
@@ -34,7 +34,7 @@
                         </span>
                         <span class="article-detail-author">
                             <i class="fas fa-user"></i>
-                            {{ $article->user->name ?? 'مجهول' }}
+                            {{ $article->user->name ?? __('messages.unknown') }}
                         </span>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
             <!-- محتوى المقال الكامل -->
             <div class="article-detail-body">
                 <div class="article-detail-text">
-                    {!! nl2br($article->content ?? 'محتوى المقال') !!}
+                    {!! nl2br($article->content ?? __('messages.article_content_default')) !!}
                 </div>
             </div>
 
@@ -53,31 +53,31 @@
              <!-- عودة للمقالات -->
                 <a href="{{ route('auth.index') }}" class="back-btn">
                     <i class="fas fa-arrow-left"></i>
-                    <span>العودة للمقالات</span>
+                    <span>{{ __('messages.back_to_articles') }}</span>
                 </a>
 
-             <!-- اضاقة تعليق -->
+             <!-- اضافة تعليق -->
                 @if(auth()->check())
                  <form action="{{route('auth.postComment')}}" method="POST">
                     @csrf
                   <div class="comment-container">
                   
-                   <input type="text" placeholder="أضف تعليقك" class="comment-input" name="content">
+                   <input type="text" placeholder="{{ __('messages.add_comment_placeholder') }}" class="comment-input" name="content">
                    <input type="hidden" name="article_id" value="{{$article->id}}">
                    <input type="hidden" name="user_id" value="{{auth()->id()}}">
-                   <button type="submit" class="comment-btn">إرسال</button>
+                   <button type="submit" class="comment-btn">{{ __('messages.send') }}</button>
                   </div>
                  </form>
-                 @elseif(auth()->guest())
-                 <span>يجب عليك تسجيل الدخول لإضافة التعليق!</span>
-                 <a href="{{route('auth.login')}}" class="btn btn-primary">تسجيل الدخول</a>
+                 @else
+                 <span>{{ __('messages.login_required_to_comment') }}</span>
+                 <a href="{{route('auth.login')}}" class="btn btn-primary">{{ __('messages.login') }}</a>
                 @endif                
 
                 <!-- مشاركة المقال -->
                 <div class="article-detail-actions">
                     <button class="share-btn" onclick="shareArticle()">
                         <i class="fas fa-share"></i>
-                        <span>مشاركة</span>
+                        <span>{{ __('messages.share') }}</span>
                     </button>
                 </div>
                 
@@ -85,7 +85,7 @@
 
             <!-- تعليقات المقال -->
             <div class="article-detail-comments">
-                <h3>تعليقات المقال</h3>
+                <h3>{{ __('messages.comments_title') }}</h3>
                 <div class="article-detail-comments-list">
                  @if($article->comments->isNotEmpty())
                     @foreach($article->comments as $comment)
@@ -99,7 +99,7 @@
                     @endforeach
                     @else
                     <div class="article-detail-comment no-comments">
-                        <p>لا توجد تعليقات</p>
+                        <p>{{ __('messages.no_comments') }}</p>
                     </div>
                  @endif
             </div>
@@ -109,10 +109,6 @@
     </div>
 </div>
 @endsection
-
-
-
-
 
 @section('scripts')
   <!-- مشاركة المقال -->
@@ -127,7 +123,7 @@
     } else {
         // نسخ الرابط للحافظة
         navigator.clipboard.writeText(window.location.href).then(function() {
-            alert('تم نسخ رابط المقال!');
+            alert('{{ __('messages.copied_link') }}');
         });
     }
    }
@@ -141,5 +137,3 @@
 </script>
 
 @endsection
-
-

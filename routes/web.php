@@ -2,36 +2,52 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Middleware\SetLocale; // استدعاء الـ Middleware
 
-// الصفحة الرئيسية
-Route::get('/',[AuthController::class, 'index'])->name('index');
+// Route لتغيير اللغة
+Route::get('lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'ar'])) {
+        session(['locale' => $locale]);
+    }
+    return redirect()->back();
+});
 
-//Routes للمصادقة
-Route::controller(AuthController::class)->name('auth.')->group(function(){
-    Route::get('/index','index')->name('index');
-    Route::get('/login', 'showLogin')->name('login');
-    Route::post('/login', 'login');
-    Route::get('/register', 'showRegister')->name('register');
-    Route::post('/register', 'register');
-    Route::post('/logout', 'logout')->name('logout');
-    Route::get('/showUser', 'showUser')->name('showUser');
-    Route::delete('/userDelete/{id}','userDelete')->name('userDelete');
-    Route::get('/userDashboard', 'userDashboard')->name('userDashboard');
-    Route::get('/article', 'showArticle')->name('article');
-    Route::get('/welcome','welcome')->name('welcome');
-    Route::middleware('auth')->group(function () {
-        Route::get('/AdminDashboard', 'AdminDashboard')->name('dashboard');
+// تطبيق Middleware SetLocale على كل مجموعة الروابط
+Route::middleware(SetLocale::class)->group(function () {
+
+    // الصفحة الرئيسية
+    Route::get('/', [AuthController::class, 'index'])->name('index');
+
+    // Routes للمصادقة
+    Route::controller(AuthController::class)->name('auth.')->group(function () {
+        Route::get('/index', 'index')->name('index');
+        Route::get('/login', 'showLogin')->name('login');
+        Route::post('/login', 'login');
+        Route::get('/register', 'showRegister')->name('register');
+        Route::post('/register', 'register');
+        Route::post('/logout', 'logout')->name('logout');
+        Route::get('/showUser', 'showUser')->name('showUser');
+        Route::delete('/userDelete/{id}', 'userDelete')->name('userDelete');
+        Route::get('/userDashboard', 'userDashboard')->name('userDashboard');
+        Route::get('/article', 'showArticle')->name('article');
+        Route::get('/welcome', 'welcome')->name('welcome');
+
+        Route::middleware('auth')->group(function () {
+            Route::get('/AdminDashboard', 'AdminDashboard')->name('dashboard');
+        });
+
+        Route::get('/showMore/{id}', 'showMore')->name('showMore');
+        Route::get('/editArticle/{id}', 'showUpdatePage')->name('editArticle');
+        Route::post('/updateArticle/{id}', 'updateArticle')->name('updateArticle');
+        Route::get('/ArticleSearch', 'ArticleSearch')->name('ArticleSearch');
+        Route::get('/whous', 'whous')->name('whous');
+        Route::get('/show_userArticle', 'show_userArticle')->name('show_userArticle');
+        Route::get('/showPostPage', 'showPostPage')->name('showPostPage');
+        Route::post('/postArticle', 'postArticle')->name('postArticle');
+        Route::get('/cancel', 'cancel')->name('cancel');
+        Route::delete('/deleteArticle/{id}', 'deleteArticle')->name('deleteArticle');
+        Route::post('/star/{id}', 'star')->name('star');
+        Route::post('/comments', 'postComment')->name('postComment');
     });
-    Route::get('/showMore/{id}', 'showMore')->name('showMore');
-    Route::get('/editArticle/{id}' , 'showUpdatePage')->name('editArticle');
-    Route::post('/updateArticle/{id}' , 'updateArticle')->name('updateArticle');
-    Route::get('/ArticleSearch', 'ArticleSearch')->name('ArticleSearch');
-    Route::get('/whous', 'whous')->name('whous');
-    Route::get('/show_userArticle' , 'show_userArticle')->name('show_userArticle');
-    Route::get('/showPostPage' , 'showPostPage')->name('showPostPage');
-    Route::post('/postArticle' , 'postArticle')->name('postArticle');
-    Route::get('/cancel' , 'cancel')->name('cancel');
-    Route::delete('/deleteArticle/{id}' , 'deleteArticle')->name('deleteArticle');
-    Route::post('/star/{id}','star')->name('star');
-    Route::post('/comments' , 'postComment')->name('postComment');
+
 });

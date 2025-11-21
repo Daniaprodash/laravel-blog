@@ -1,5 +1,5 @@
 @extends('master')
-@section('title','userDashboard')
+@section('title', __('messages.user_dashboard'))
 <link rel="stylesheet" href="{{asset('assets/css/adminDashboardStyle.css')}}">
 @section('content')
 <div class="dashboard-page">
@@ -10,17 +10,17 @@
                 <div class="col-md-8">
                     <h2 class="mb-3">
                         <i class="fas fa-hand-wave me-2" style="color: #667eea;"></i>
-                        مرحباً بك، {{ Auth::user()->name }}!
+                        {{ __('messages.welcome_back', ['name' => Auth::user()->name]) }}
                     </h2>
                     <p class="text-muted mb-0">
-                        مرحباً بك في لوحة التحكم الخاصة بك. يمكنك إدارة حسابك ومتابعة نشاطك من هنا.
+                        {{ __('messages.dashboard_intro') }}
                     </p>
                 </div>
                 <div class="col-md-4 text-end">
                     <div class="user-info">
-                        <h5><i class="fas fa-user me-2"></i>معلومات الحساب</h5>
-                        <p class="mb-1"><strong>البريد الإلكتروني:</strong> {{ Auth::user()->email }}</p>
-                        <p class="mb-0"><strong>تاريخ التسجيل:</strong> {{ Auth::user()->created_at->format('Y/m/d') }}</p>
+                        <h5><i class="fas fa-user me-2"></i>{{ __('messages.account_info') }}</h5>
+                        <p class="mb-1"><strong>{{ __('messages.email') }}:</strong> {{ Auth::user()->email }}</p>
+                        <p class="mb-0"><strong>{{ __('messages.registered_at') }}:</strong> {{ Auth::user()->created_at->format('Y/m/d') }}</p>
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                         </a>
                     </div>
                     <h4 class="mb-2">{{$count_article}}</h4>
-                    <p class="text-muted mb-0">عرض وإدارة المقالات</p>
+                    <p class="text-muted mb-0">{{ __('messages.manage_articles') }}</p>
                 </div>
             </div>
             <!-- نشر مقالة -->
@@ -46,7 +46,7 @@
                         <i class="fas fa-plus text-warning"></i></a>
                     </div>
                     <h4 class="mb-2"></h4>
-                    <p class="text-muted mb-0">نشر مقالة</p>
+                    <p class="text-muted mb-0">{{ __('messages.publish_article') }}</p>
                 </div>
             </div>
         </div>

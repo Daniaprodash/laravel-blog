@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', 'إدارة المقالات - DASHBlog')
+@section('title', __('messages.articles_management'))
 <link rel="stylesheet" href="{{ asset('assets/css/articleManageStyle.css') }}">
 @section('content')
 
@@ -15,12 +15,12 @@
     <div class="admin-header">
         <h1 class="admin-title">
             <i class="fas fa-newspaper"></i>
-            إدارة المقالات
+            {{ __('messages.articles_management') }}
         </h1>
         <div class="admin-stats">
             <div class="stat-item">
                 <span class="stat-number">{{ $article->count() }}</span>
-                <span class="stat-label">إجمالي المقالات</span>
+                <span class="stat-label">{{ __('messages.total_articles') }}</span>
             </div>
         </div>
     </div>
@@ -30,13 +30,13 @@
             <table class="articles-table">
                 <thead>
                     <tr>
-                        <th class="col-id">#</th>
-                        <th class="col-title">العنوان</th>
-                        <th class="col-author">المؤلف</th>
-                        <th class="col-category">التصنيف</th>
-                        <th class="col-comments">التعليقات</th>
-                        <th class="col-date">تاريخ النشر</th>
-                        <th class="col-actions">الإجراءات</th>
+                        <th class="col-id">{{ __('messages.id') }}</th>
+                        <th class="col-title">{{ __('messages.title') }}</th>
+                        <th class="col-author">{{ __('messages.author') }}</th>
+                        <th class="col-category">{{ __('messages.category') }}</th>
+                        <th class="col-comments">{{ __('messages.comments') }}</th>
+                        <th class="col-date">{{ __('messages.published_date') }}</th>
+                        <th class="col-actions">{{ __('messages.actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -89,15 +89,15 @@
                         </td>
                         <td class="col-actions">
                             <div class="action-buttons">
-                                <a href="{{ route('auth.showMore', $item->id) }}" class="action-btn view-btn" title="عرض">
+                                <a href="{{ route('auth.showMore', $item->id) }}" class="action-btn view-btn" title="{{ __('messages.view') }}">
                                     <i class="fas fa-eye"></i>
                                 </a>
 
-                                <a href="{{ route('auth.editArticle', $item->id) }}" class="action-btn edit-btn" title="تعديل">
+                                <a href="{{ route('auth.editArticle', $item->id) }}" class="action-btn edit-btn" title="{{ __('messages.edit') }}">
                                     <i class="fas fa-edit"></i>
                                 </a>
 
-                                <button type="button" class="action-btn delete-btn" title="حذف" onclick="openConfirmModal({{ $item->id }})">
+                                <button type="button" class="action-btn delete-btn" title="{{ __('messages.delete') }}" onclick="openConfirmModal({{ $item->id }})">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>
@@ -108,11 +108,11 @@
                         <td colspan="7" class="no-articles-message">
                             <div class="empty-state">
                                 <i class="fas fa-newspaper"></i>
-                                <h3>لا توجد مقالات</h3>
-                                <p>لم يتم إنشاء أي مقالات بعد</p>
+                                <h3>{{ __('messages.no_articles') }}</h3>
+                                <p>{{ __('messages.no_articles_created') }}</p>
                                 <a href="{{ route('auth.showPostPage') }}" class="create-article-btn">
                                     <i class="fas fa-plus"></i>
-                                    إنشاء مقال جديد
+                                    {{ __('messages.create_article') }}
                                 </a>
                             </div>
                         </td>
@@ -128,12 +128,12 @@
 <div id="confirmModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:9999;">
     <div style="background:white; padding:30px; border-radius:15px; text-align:center; min-width:350px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
         <i class="fas fa-exclamation-triangle" style="font-size:48px; color:#ef4444; margin-bottom:15px;"></i>
-        <p style="margin-bottom: 25px; font-size:16px; color:#333;">هل أنت متأكد من حذف هذه المقالة؟ لا يمكن التراجع بعد الحذف.</p>
+        <p style="margin-bottom: 25px; font-size:16px; color:#333;">{{ __('messages.delete_confirm_text') }}</p>
         <form id="confirmDeleteForm" method="POST" style="display:inline-block;">
             @csrf
             @method('DELETE')
-            <button type="submit" style="background:#ef4444; color:white; padding:10px 20px; border:none; border-radius:8px; cursor:pointer; font-size:14px; margin-left:10px;">نعم، حذف</button>
-            <button type="button" onclick="closeConfirmModal()" style="background:#6b7280; color:white; padding:10px 20px; border:none; border-radius:8px; cursor:pointer; font-size:14px;">إلغاء</button>
+            <button type="submit" style="background:#ef4444; color:white; padding:10px 20px; border:none; border-radius:8px; cursor:pointer; font-size:14px; margin-left:10px;">{{ __('messages.yes_delete') }}</button>
+            <button type="button" onclick="closeConfirmModal()" style="background:#6b7280; color:white; padding:10px 20px; border:none; border-radius:8px; cursor:pointer; font-size:14px;">{{ __('messages.cancel') }}</button>
         </form>
     </div>
 </div>

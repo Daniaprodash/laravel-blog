@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', 'dashboard')
+@section('title', __('messages.dashboard'))
 <link rel="stylesheet" href="{{asset('assets/css/adminDashboardStyle.css')}}">
 @section('content')<div class="dashboard-page">
     <div class="container dashboard-container">
@@ -9,17 +9,17 @@
                 <div class="col-md-8">
                     <h2 class="mb-3">
                         <i class="fas fa-hand-wave me-2" style="color: #667eea;"></i>
-                        مرحباً بك، {{ Auth::user()->name }}!
+                        {{ __('messages.welcome_back', ['name' => Auth::user()->name]) }}
                     </h2>
                     <p class="text-muted mb-0">
-                        مرحباً بك في لوحة التحكم الخاصة بك. يمكنك إدارة حسابك ومتابعة نشاطك من هنا.
+                        {{ __('messages.dashboard_intro') }}
                     </p>
                 </div>
                 <div class="col-md-4 text-end">
                     <div class="user-info">
-                        <h5><i class="fas fa-user me-2"></i>معلومات الحساب</h5>
-                        <p class="mb-1"><strong>البريد الإلكتروني:</strong> {{ Auth::user()->email }}</p>
-                        <p class="mb-0"><strong>تاريخ التسجيل:</strong> {{ Auth::user()->created_at->format('Y/m/d') }}</p>
+                        <h5><i class="fas fa-user me-2"></i>{{ __('messages.account_info') }}</h5>
+                        <p class="mb-1"><strong>{{ __('messages.email') }}:</strong> {{ Auth::user()->email }}</p>
+                        <p class="mb-0"><strong>{{ __('messages.registered_at') }}:</strong> {{ Auth::user()->created_at->format('Y/m/d') }}</p>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                     </div>
                     <h4 class="mb-2">{{$count}}</h4>
                     <a href="{{route('auth.article')}}">
-                    <p class="text-muted mb-0">عرض وإدارة المقالات</p></a>
+                    <p class="text-muted mb-0">{{ __('messages.manage_articles') }}</p></a>
                 </div>
             </div>
 
@@ -45,7 +45,7 @@
                     </div>
                     <h4 class="mb-2">{{$count_users}}</h4>
                     <a href="{{route('auth.showUser')}}">
-                    <p class="text-muted mb-0">إدارة المستخدمين</p></a>
+                    <p class="text-muted mb-0">{{ __('messages.manage_users') }}</p></a>
                 </div>
             </div>
 
@@ -56,7 +56,7 @@
                     </div>
                     <h4 class="mb-2">{{$article_user}}</h4>
                     <a href="{{route('auth.showPostPage')}}">
-                    <p class="text-muted mb-0">نشر مقالة</p></a>
+                    <p class="text-muted mb-0">{{ __('messages.publish_article') }}</p></a>
                 </div>
             </div>
         </div>
@@ -65,13 +65,13 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <div class="welcome-card">
-                    <h5><i class="fas fa-bell me-2"></i>آخر الإشعارات</h5>
-                    <p class="text-muted">لا توجد إشعارات جديدة</p>
+                    <h5><i class="fas fa-bell me-2"></i>{{ __('messages.latest_notifications') }}</h5>
+                    <p class="text-muted">{{ __('messages.no_notifications') }}</p>
                 </div>
             </div>
             <div class="col-md-6 mb-3">
     <div class="welcome-card">
-        <h5><i class="fas fa-tasks me-2"></i>آخر النشاطات</h5>
+        <h5><i class="fas fa-tasks me-2"></i>{{ __('messages.latest_activities') }}</h5>
 
         @forelse($activities as $activity)
             <p>
@@ -80,10 +80,10 @@
                 <br>
                 <small class="text-muted">{{ $activity->user->name }}</small>
                 <small class="text-muted">{{ $activity->created_at->diffForHumans() }}</small>
-                
+
             </p>
         @empty
-            <p class="text-muted">لا توجد نشاطات حديثة</p>
+            <p class="text-muted">{{ __('messages.no_recent_activities') }}</p>
         @endforelse
     </div>
 </div>

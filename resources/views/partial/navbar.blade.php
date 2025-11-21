@@ -3,15 +3,15 @@
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container">
       <a class="navbar-brand fw-bold" href="#">
-          DashBlog
+        DashBlog
           <i class="fas fa-blog me-2"></i>
       </a>
 
       <form action="{{ route('auth.ArticleSearch') }}" method="GET" class="search-form">
           <div class="search-wrapper">
             <i class="fas fa-search search-icon"></i>
-            <input type="text" name="keyword" placeholder="ابحث هنا..." class="search-input" value="{{ request('keyword') }}">
-             <button type="submit" class="search-button">بحث</button>
+            <input type="text" name="keyword" placeholder="{{ __('messages.search_placeholder') }}" class="search-input" value="{{ request('keyword') }}">
+             <button type="submit" class="search-button">{{ __('messages.search') }}</button>
           </div>
       </form>
 
@@ -19,20 +19,20 @@
         @auth
         <form action="{{ route('auth.logout') }}" method="POST" style=" margin-top:5px">
           @csrf
-          <button class="log-in btn-link">Log out</button></form>
+          <button class="log-in btn-link">{{ __('messages.logout') }}</button></form>
         @else
-        <button class="log-in"><a href="{{route('auth.welcome')}}" class="btn-link">Sign in </a></button>
+        <button class="log-in"><a href="{{route('auth.welcome')}}" class="btn-link">{{ __('messages.login') }} </a></button>
         @endauth
         <div class="nav-link">  
-          <a href="#">Contact</a>
-          <a href="#">Categories</a>
-          <a href="{{route('auth.whous')}}">About</a>
-          <a href="{{route('auth.index')}}">Home</a>
+          <a href="#">{{ __('messages.contact') }}</a>
+          <a href="#">{{ __('messages.categories') }}</a>
+          <a href="{{route('auth.whous')}}">{{ __('messages.about') }}</a>
+          <a href="{{route('auth.index')}}">{{ __('messages.home') }}</a>
           @auth
           @if(Auth::user()->role==='admin')
-            <a href="{{route('auth.dashboard')}}">your profile</a>
+            <a href="{{route('auth.dashboard')}}">{{ __('messages.profile') }}</a>
           @else
-            <a href="{{route('auth.userDashboard')}}">your profile</a>
+            <a href="{{route('auth.userDashboard')}}">{{ __('messages.profile') }}</a>
           @endif  
           @endauth
         </div>
@@ -75,4 +75,3 @@
   
   });
 </script>
-    
