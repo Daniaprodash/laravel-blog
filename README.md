@@ -18,6 +18,7 @@ The blog includes multiple features such as article management, comments, and pe
 - ✅ Confirmation messages for actions (e.g., "Added successfully")  
 - 🔄 User promotion by admin  
 - ⚙️ Laravel Events for enhanced interactivity  
+- 🌐 Language switching (English / Arabic) — easy locale toggle for UI text.
 
 ## 🧩 File Structure by Type
 
